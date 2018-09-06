@@ -34,6 +34,13 @@
 			$this->dtcadastro = $value;
 		}
 
+		//método construtor com passagem de parâmetro login e senha
+		//nos parâmetros $loing="" garante a passagem ou não de parâmetros
+		public function __construct($login = "", $password = ""){
+			$this->deslogin = $login;
+			$this->desenha = $password;
+		}
+
 		//lista um usuário por id
 		public function loadById($id){
 
@@ -41,12 +48,7 @@
 			$result = $sql->select("SELECT * FROM tb_usuarios WHERE idusuario = :ID", array(":ID"=>$id));
 
 			if(count($result) > 0){
-				$row = $result[0];
-				$this->setIdusuario($row['idusuario']);
-				$this->setDeslogin($row['deslogin']);
-				$this->setDesenha($row['desenha']);
-				$this->setDtcadastro(new DateTime($row['dtcadastro']));
-
+				$this->setData($result[0]);
 			}
 		}
 
@@ -78,13 +80,9 @@
 				":SENHA"=>$password
 			));
 
-			if(count($result) > 0){
-				$row = $result[0];
-				$this->setIdusuario($row['idusuario']);
-				$this->setDeslogin($row['deslogin']);
-				$this->setDesenha($row['desenha']);
-				$this->setDtcadastro(new DateTime($row['dtcadastro']));
-
+			if(count($result) > 0){				
+				
+				$this->setData($result[0]);
 			}
 			else{
 				throw new Exception("Erro de login ou senha");
@@ -93,6 +91,26 @@
 
 		}
 
+		public function insert(){
+			
+			$sql = new Sql();
+			$result->select("INSERT INTO tb_usuarios(deslogin, desenha) VALUES (:LOGIN, :SENHA);",array(
+				':LOGIN'=>$this->getDeslogin(),
+				':SENHA'=>$this->getDesenha()
+			));
+			
+			if(count($result)>0){
+				$this->setData($result[0]);
+			}
+
+		}
+
+		public function setData($data){
+			$this->setIdusuario($data['idusuario']);
+			$this->setDeslogin($data['deslogin']);
+			$this->setDesenha($data['desenha']);
+			$this->setDtcadastro(new DateTime($data['dtcadastro']));
+		}
 
 		public function __toString(){
 			return json_encode(array(
