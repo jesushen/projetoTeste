@@ -94,11 +94,11 @@
 		public function insert(){
 			
 			$sql = new Sql();
-			$result->select("INSERT INTO tb_usuarios(deslogin, desenha) VALUES (:LOGIN, :SENHA);",array(
+			$result = $sql->select("INSERT INTO tb_usuarios(deslogin, desenha) VALUES (:LOGIN, :SENHA);",array(
 				':LOGIN'=>$this->getDeslogin(),
 				':SENHA'=>$this->getDesenha()
 			));
-			
+
 			if(count($result)>0){
 				$this->setData($result[0]);
 			}

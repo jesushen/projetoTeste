@@ -24,7 +24,7 @@
 	$login->login("admin","123456");
 	echo $login;*/
 
-	$novoUsuario = new Usuario("santos", "34343");
+	$novoUsuario = new Usuario("antonio", "3222");
 	$novoUsuario->insert();
 	echo $novoUsuario;
  ?>
