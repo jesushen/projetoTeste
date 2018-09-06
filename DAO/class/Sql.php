@@ -28,9 +28,9 @@
 			return $stmt;			
 		}
 
-		public function select($rowQuery, $params=array()):array{
+		public function select($rawQuery, $params=array()):array{
 
-			$stmt = $this->query($rowQuery, $params);
+			$stmt = $this->query($rawQuery, $params);
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		}
