@@ -113,6 +113,18 @@
 			$this->setDtcadastro(new DateTime($data['dtcadastro']));
 		}
 
+		public function update($login, $senha){
+			$this->setDeslogin($login);
+			$this->setDesenha($senha);
+			$sql = new Sql();
+
+			$sql->query("UPDATE tb_usuarios SET deslogin = :LOGIN, desenha = :SENHA WHERE idusuario = :ID", array(
+					':LOGIN'=>$this->getDeslogin(),
+					':SENHA'=>$this->getDesenha(),
+					':ID'=>$this->getIdusuario()
+			));
+		}
+		
 		public function __toString(){
 			return json_encode(array(
 				"idusuario"=>$this->getIdusuario(),	

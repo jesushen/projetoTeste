@@ -24,7 +24,14 @@
 	$login->login("admin","123456");
 	echo $login;*/
 
-	$novoUsuario = new Usuario("antonio", "3222");
+	//criando um novo usuario
+	/*$novoUsuario = new Usuario("antonio", "3222");
 	$novoUsuario->insert();
-	echo $novoUsuario;
+	echo $novoUsuario;*/
+
+	$usuario = new Usuario();
+	$usuario->loadById(9);
+
+	$usuario->update("professor2", "prof123222");
+	echo($usuario);
  ?>
