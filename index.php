@@ -29,9 +29,15 @@
 	$novoUsuario->insert();
 	echo $novoUsuario;*/
 
+/*Alterar um usuário
 	$usuario = new Usuario();
 	$usuario->loadById(9);
 
 	$usuario->update("professor2", "prof123222");
+	echo($usuario);
+	*/
+	$usuario = new Usuario();
+	$usuario->loadById(13);
+	$usuario->delete();
 	echo($usuario);
  ?>
