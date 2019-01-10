@@ -99,8 +99,9 @@
 				':SENHA'=>$this->getDesenha()
 			));
 
-			if(count($result)>0){
-				$this->setData($result[0]);
+			$resposta = $sql->select("SELECT * FROM tb_usuarios WHERE idusuario = LAST_INSERT_ID()");
+			if(count($resposta)>0){
+				$this->setData($resposta[0]);
 			}
 
 		}
